@@ -406,7 +406,7 @@ QCCollection Statistics::mapping(const BedFile& bed_file, const QString& bam_fil
 		plot3.addLine(dp_dist.yCoords(true));
 
 		plotname = Helper::tempFileName(".png");
-		plot3.store(plotname);
+        plot3.store(plotname, true);
 		//TODO accession
 		output.insert(QCValue::Image("fragment duplication distribution plot", plotname, "Fragment duplication distribution plot.", "n/a"));
 		QFile::remove(plotname);
@@ -417,7 +417,7 @@ QCCollection Statistics::mapping(const BedFile& bed_file, const QString& bam_fil
 	{
 		LinePlot plot4;
 		plot4.setXLabel("minimum number of duplicates");
-		plot4.setYLabel("depth of coverage");
+        plot4.setYLabel("depth of coverage");
 		QVector<double> xvalues;
 		for (int i=1; i<=cumsum_depth.size()-1; ++i)
 		{
@@ -429,7 +429,7 @@ QCCollection Statistics::mapping(const BedFile& bed_file, const QString& bam_fil
 		plot4.addLine(cumsum_depth);
 
 		plotname = Helper::tempFileName(".png");
-		plot4.store(plotname);
+        plot4.store(plotname, true, {0,1,2,3});
 		//TODO accession
 		output.insert(QCValue::Image("duplication-coverage plot", plotname, "Coverge by duplication plot.", "n/a"));
 		QFile::remove(plotname);
